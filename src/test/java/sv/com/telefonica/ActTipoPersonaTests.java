@@ -2,6 +2,8 @@ package sv.com.telefonica;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -27,12 +29,31 @@ public class ActTipoPersonaTests {
 
 	@Test
 	public void testCreateUser() {
-		ActTipoPersonaEntity tipoPersona = new ActTipoPersonaEntity();
-		tipoPersona.setDescripcion("Persona Jurídica");
+		
+		ActTipoPersonaEntity natural = new ActTipoPersonaEntity();
+		natural.setDescripcion("Persona Natural");
+		natural.setFechaCreado(new Date());
+		natural.setFechaModificado(new Date());
+		natural.setCreadoPor("lchavez");
+		natural.setModificadoPor("lchavez");
 
-		ActTipoPersonaEntity savedTpi = repo.save(tipoPersona);
-		ActTipoPersonaEntity existTpe = entityManager.find(ActTipoPersonaEntity.class, savedTpi.getId());
-		assertThat(tipoPersona.getDescripcion()).isEqualTo(existTpe.getDescripcion());
+		ActTipoPersonaEntity savedNat = repo.save(natural);
+		ActTipoPersonaEntity existNat = entityManager.find(ActTipoPersonaEntity.class, savedNat.getId());
+		assertThat(natural.getDescripcion()).isEqualTo(existNat.getDescripcion());
+		
+		ActTipoPersonaEntity juridica = new ActTipoPersonaEntity();
+		juridica.setDescripcion("Persona Jurídica");
+		juridica.setFechaCreado(new Date());
+		juridica.setFechaModificado(new Date());
+		juridica.setCreadoPor("lchavez");
+		juridica.setModificadoPor("lchavez");
+
+		ActTipoPersonaEntity savedJur = repo.save(juridica);
+		ActTipoPersonaEntity existJur = entityManager.find(ActTipoPersonaEntity.class, savedJur.getId());
+		assertThat(juridica.getDescripcion()).isEqualTo(existJur.getDescripcion());
+		
+		
+
 
 	}
 }

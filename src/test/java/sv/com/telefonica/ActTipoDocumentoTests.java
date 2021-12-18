@@ -28,17 +28,29 @@ public class ActTipoDocumentoTests {
 
 	@Test
 	public void testCreateUser() {
-		ActTipoDocumentoEntity tipoDocumento = new ActTipoDocumentoEntity();
-		tipoDocumento.setNombre("DUI");
-		tipoDocumento.setMascara("99999999-9");
-		tipoDocumento.setFechaCreado(new Date());
-		tipoDocumento.setFechaModificado(new Date());
-		tipoDocumento.setCreadoPor("lchavez");
-		tipoDocumento.setModificadoPor("lchavez");
+		ActTipoDocumentoEntity dui = new ActTipoDocumentoEntity();
+		dui.setNombre("DUI");
+		dui.setMascara("99999999-9");
+		dui.setFechaCreado(new Date());
+		dui.setFechaModificado(new Date());
+		dui.setCreadoPor("lchavez");
+		dui.setModificadoPor("lchavez");
 
-		ActTipoDocumentoEntity savedTdo = repo.save(tipoDocumento);
+		ActTipoDocumentoEntity savedTdo = repo.save(dui);
 		ActTipoDocumentoEntity existTdo = entityManager.find(ActTipoDocumentoEntity.class, savedTdo.getId());
-		assertThat(tipoDocumento.getNombre()).isEqualTo(existTdo.getNombre());
+		assertThat(dui.getNombre()).isEqualTo(existTdo.getNombre());
+		
+		ActTipoDocumentoEntity nit = new ActTipoDocumentoEntity();
+		nit.setNombre("NIT");
+		nit.setMascara("9999-999999-999-9");
+		nit.setFechaCreado(new Date());
+		nit.setFechaModificado(new Date());
+		nit.setCreadoPor("lchavez");
+		nit.setModificadoPor("lchavez");
+
+		ActTipoDocumentoEntity savedNit = repo.save(nit);
+		ActTipoDocumentoEntity existNit = entityManager.find(ActTipoDocumentoEntity.class, savedNit.getId());
+		assertThat(nit.getNombre()).isEqualTo(existNit.getNombre());
 
 	}
 	
