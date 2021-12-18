@@ -2,6 +2,8 @@ package sv.com.telefonica;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -18,7 +20,6 @@ import sv.com.telefonica.model.repository.ActTipoDocumentoRepository;
 @Rollback(false)
 public class ActTipoDocumentoTests {
 
-	//Lcha
 	@Autowired
 	private TestEntityManager entityManager;
 
@@ -28,8 +29,12 @@ public class ActTipoDocumentoTests {
 	@Test
 	public void testCreateUser() {
 		ActTipoDocumentoEntity tipoDocumento = new ActTipoDocumentoEntity();
-		tipoDocumento.setNombre("NIT");
-		tipoDocumento.setMascara("9999-999999-999-9");
+		tipoDocumento.setNombre("DUILC");
+		tipoDocumento.setMascara("99999999-9");
+		tipoDocumento.setFechaCreado(new Date());
+		tipoDocumento.setFechaModificado(new Date());
+		tipoDocumento.setCreadoPor("lchavez");
+		tipoDocumento.setModificadoPor("lchavez");
 
 		ActTipoDocumentoEntity savedTdo = repo.save(tipoDocumento);
 		ActTipoDocumentoEntity existTdo = entityManager.find(ActTipoDocumentoEntity.class, savedTdo.getId());
