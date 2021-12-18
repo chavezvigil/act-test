@@ -29,7 +29,7 @@ public class ActTipoDocumentoTests {
 	@Test
 	public void testCreateUser() {
 		ActTipoDocumentoEntity tipoDocumento = new ActTipoDocumentoEntity();
-		tipoDocumento.setNombre("DUILC");
+		tipoDocumento.setNombre("DUI");
 		tipoDocumento.setMascara("99999999-9");
 		tipoDocumento.setFechaCreado(new Date());
 		tipoDocumento.setFechaModificado(new Date());
