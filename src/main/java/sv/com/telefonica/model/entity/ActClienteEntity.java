@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "act_clientes")
+@Table(name = "act_cliente")
 public class ActClienteEntity implements Serializable {
 
 	/**
@@ -25,7 +25,7 @@ public class ActClienteEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
+	@Column(name = "id_cliente", nullable = false)
 	private Integer id;
 	
 	@JoinColumn(name = "id_tipo_persona", referencedColumnName = "id_tipo_persona", nullable = false)
