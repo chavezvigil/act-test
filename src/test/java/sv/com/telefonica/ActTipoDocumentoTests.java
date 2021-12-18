@@ -18,7 +18,7 @@ import sv.com.telefonica.model.repository.ActTipoDocumentoRepository;
 @Rollback(false)
 public class ActTipoDocumentoTests {
 
-	
+	//Lchavez g
 	@Autowired
 	private TestEntityManager entityManager;
 
