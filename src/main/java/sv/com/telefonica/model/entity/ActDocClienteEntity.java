@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "act_doc_cliente")
-public class ActDocClienteEntity implements Serializable{
+public class ActDocClienteEntity implements Serializable {
 
 	/**
 	 * 
@@ -26,10 +26,17 @@ public class ActDocClienteEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_doc_cliente", nullable = false)
 	private Integer id;
-	
+
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente", nullable = false)
 	@ManyToOne(optional = false)
 	private ActClienteEntity actClienteEntity;
+
+	@JoinColumn(name = "id_doc_tipo_persona", referencedColumnName = "id_doc_tipo_persona", nullable = false)
+	@ManyToOne(optional = false)
+	private ActDocTipoPersonaEntity actDocTipoPersonaEntity;
+
+	@Column(name = "numero_documento", length = 30)
+	private String numeroDocumento;
 	
 	@Column(name = "creado_por", length = 100)
 	private String creadoPor;
@@ -60,9 +67,55 @@ public class ActDocClienteEntity implements Serializable{
 	public void setActClienteEntity(ActClienteEntity actClienteEntity) {
 		this.actClienteEntity = actClienteEntity;
 	}
+
+	public ActDocTipoPersonaEntity getActDocTipoPersonaEntity() {
+		return actDocTipoPersonaEntity;
+	}
+
+	public void setActDocTipoPersonaEntity(ActDocTipoPersonaEntity actDocTipoPersonaEntity) {
+		this.actDocTipoPersonaEntity = actDocTipoPersonaEntity;
+	}
+
+	public String getCreadoPor() {
+		return creadoPor;
+	}
+
+	public void setCreadoPor(String creadoPor) {
+		this.creadoPor = creadoPor;
+	}
+
+	public String getModificadoPor() {
+		return modificadoPor;
+	}
+
+	public void setModificadoPor(String modificadoPor) {
+		this.modificadoPor = modificadoPor;
+	}
+
+	public Date getFechaCreado() {
+		return fechaCreado;
+	}
+
+	public void setFechaCreado(Date fechaCreado) {
+		this.fechaCreado = fechaCreado;
+	}
+
+	public Date getFechaModificado() {
+		return fechaModificado;
+	}
+
+	public void setFechaModificado(Date fechaModificado) {
+		this.fechaModificado = fechaModificado;
+	}
+
+	public String getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
 	
 	
-	
-	
-	
+
 }
