@@ -13,7 +13,7 @@ Administración de clientes telefónica
 8. Connect to mysql instance to create database
 9. Create database using the command: CREATE DATABASE act;
 
-![image](https://user-images.githubusercontent.com/2258381/146680525-6446a07e-70a0-4423-9b58-5134c696b03a.png)
+![image](https://user-images.githubusercontent.com/2258381/146680689-dc59d512-c192-4737-ab97-43cf50f68151.png)
 
 10. Run proyect on Tomcat
 
