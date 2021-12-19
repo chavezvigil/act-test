@@ -1,7 +1,7 @@
 # Act-Test
 Administración de clientes telefónica
 
-Please follow this instruction to install:
+#Please follow this instruction to install:
 
 1. Download STS from: https://spring.io/tools
 2. Download Tomcat 9 from: https://tomcat.apache.org/download-90.cgi 
@@ -15,13 +15,13 @@ Please follow this instruction to install:
 
 ![image](https://user-images.githubusercontent.com/2258381/146680525-6446a07e-70a0-4423-9b58-5134c696b03a.png)
 
-10. Spring framework will generate database based on the created entities
-
 10. Run proyect on Tomcat
 
 ![image](https://user-images.githubusercontent.com/2258381/146679846-4766fbc6-fcb0-48b8-b380-09224166c242.png)
 
-Please follow this instruction to test the endpoint:
+11. Spring framework will generate database based on the created entities
+
+#Please follow this instruction to test the endpoint:
 
 1. Download insomnia or any software to request for web services restfull: https://insomnia.rest/download
 2. Then create new request as "get request, then put url: http://localhost:8080/act/clientes
