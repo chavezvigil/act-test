@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Bienvenido ACT</title>
-<link rel="stylesheet" type="text/css"
-	href="./webjars/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="./webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="./webjars/bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="ISO-8859-1">
+	<title>Bienvenido ACT</title>
+	<link rel="stylesheet" type="text/css" href="./webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="./webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-	<div class="container text-center">
-		<h2>Administraci&oacute;n de clientes telef&oacute;nica</h2>
-		<h3>
-			<a th:href="@{/user_registro}">Registro</a>
-		</h3>
-		<h3>
-			<a th:href="@{/login}">Login</a>
-		</h3> 
-		<!-- <h3>
-			<a th:href="/@{/users}">Lista de usuarios</a>
-		</h3>
-		-->
-		
-		
+	<div class="container ">
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="http://www.telefonica.com.sv/">
+				<h3>AC-Telef&oacute;nica Test</h3>
+			</a>
+		</nav>
+
+		<div class="row">
+			<div class="col-sm">
+
+				<a th:href="@{/login}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Iniciar
+					Sesi&oacute;n</a>
+				<a th:href="@{/user_registro}" class="btn btn-secondary btn-lg active" role="button"
+					aria-pressed="true">Registro Usuarios</a>
+			</div>
+		</div>
+
 	</div>
 
 </body>
+
 </html>
