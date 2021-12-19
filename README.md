@@ -1,5 +1,5 @@
 # Act-Test
-Administración de clientes telefónica}
+Administración de clientes telefónica
 
 Please follow this instruction to install:
 
@@ -9,7 +9,13 @@ Please follow this instruction to install:
 4. Git clone on any chapter: git clone https://github.com/chavezvigil/act-test.git 
 5. Open proyect from STS
 6. Right click on the proyect, then maven, then update proyect
-7. Run proyect on Tomcat
+7. Install mysql using the command: sudo apt update, sudo apt install mysql-server
+8. Connect to mysql instance to create database
+9. Create database using the command: CREATE DATABASE act;
+
+
+
+10. Run proyect on Tomcat
 
 ![image](https://user-images.githubusercontent.com/2258381/146679846-4766fbc6-fcb0-48b8-b380-09224166c242.png)
 
