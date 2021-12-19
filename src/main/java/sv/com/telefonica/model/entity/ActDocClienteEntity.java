@@ -27,6 +27,9 @@ public class ActDocClienteEntity implements Serializable {
 	@Column(name = "id_doc_cliente", nullable = false)
 	private Integer id;
 
+	@Column(name = "numero_documento", length = 30, nullable = false)
+	private String numeroDocumento;
+	
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente", nullable = false)
 	@ManyToOne(optional = false)
 	private ActClienteEntity actClienteEntity;
@@ -34,9 +37,6 @@ public class ActDocClienteEntity implements Serializable {
 	@JoinColumn(name = "id_doc_tipo_persona", referencedColumnName = "id_doc_tipo_persona", nullable = false)
 	@ManyToOne(optional = false)
 	private ActDocTipoPersonaEntity actDocTipoPersonaEntity;
-
-	@Column(name = "numero_documento", length = 30)
-	private String numeroDocumento;
 	
 	@Column(name = "creado_por", length = 100)
 	private String creadoPor;

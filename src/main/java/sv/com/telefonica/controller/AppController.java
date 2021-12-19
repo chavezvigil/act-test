@@ -1,7 +1,6 @@
 package sv.com.telefonica.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -40,12 +39,15 @@ public class AppController {
 		return "user_registro_exito";
 	}
 
-	@GetMapping("/clientes")
+	@GetMapping("/usuarios")
 	public String listUsers(Model model) {
+
 		List<ActUsuarioEntity> listUsers = userRepo.findAll();
 		model.addAttribute("listUsers", listUsers);
 
 		return "users";
 	}
+
+	
 
 }

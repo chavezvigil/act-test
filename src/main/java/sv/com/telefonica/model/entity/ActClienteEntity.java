@@ -2,7 +2,9 @@ package sv.com.telefonica.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,11 +30,7 @@ public class ActClienteEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente", nullable = false)
 	private Integer id;
-	
-	@JoinColumn(name = "id_tipo_persona", referencedColumnName = "id_tipo_persona", nullable = false)
-	@ManyToOne(optional = false)
-	private ActTipoPersonaEntity actTipoPersonaEntity;
-	
+
 	@Column(name = "nombre_cliente", length = 150)
 	private String nombreCliente;
 	
@@ -54,6 +53,14 @@ public class ActClienteEntity implements Serializable {
 	@Column(name = "fecha_modificacion")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaModificado;
+	
+	
+	@JoinColumn(name = "id_tipo_persona", referencedColumnName = "id_tipo_persona", nullable = false)
+	@ManyToOne(optional = false)
+	private ActTipoPersonaEntity actTipoPersonaEntity;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "actClienteEntity")
+	private List<ActDocClienteEntity> actDocClienteList;
 
 	public Integer getId() {
 		return id;
