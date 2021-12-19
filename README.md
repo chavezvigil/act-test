@@ -13,12 +13,13 @@ Please follow this instruction to install:
 8. Connect to mysql instance to create database
 9. Create database using the command: CREATE DATABASE act;
 
+![image](https://user-images.githubusercontent.com/2258381/146680525-6446a07e-70a0-4423-9b58-5134c696b03a.png)
 
+10. Spring framework will generate database based on the created entities
 
 10. Run proyect on Tomcat
 
 ![image](https://user-images.githubusercontent.com/2258381/146679846-4766fbc6-fcb0-48b8-b380-09224166c242.png)
-
 
 Please follow this instruction to test the endpoint:
 
