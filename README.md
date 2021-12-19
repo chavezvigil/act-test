@@ -8,5 +8,5 @@ Please follow this instruction to install:
 3. Add server tomcat to STS
 4. Git clone on any chapter: git clone https://github.com/chavezvigil/act-test.git 
 5. Open proyect from STS
-6. Right click on the proyect, then maven, the update proyect.
+6. Right click on the proyect, then maven, then update proyect.
 7. Run proyect on Tomcat
