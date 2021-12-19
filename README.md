@@ -21,6 +21,12 @@ Administración de clientes telefónica
 
 11. Spring framework will generate database based on the created entities
 
+#Please follow this instruction to management database:
+
+1. Download DBeaver community or any software to management databases: https://dbeaver.io/download/
+
+![image](https://user-images.githubusercontent.com/2258381/146680912-2f80d9ce-ef96-4501-81cd-ce8f6501e8af.png)
+
 #Please follow this instruction to test the endpoint:
 
 1. Download insomnia or any software to request for web services restfull: https://insomnia.rest/download
