@@ -135,15 +135,5 @@ public class ActClienteEntity implements Serializable {
 	public void setFechaModificado(Date fechaModificado) {
 		this.fechaModificado = fechaModificado;
 	}
-
-	public List<ActDirClienteEntity> getActDirClienteList() {
-		return actDirClienteList;
-	}
-
-	public void setActDirClienteList(List<ActDirClienteEntity> actDirClienteList) {
-		this.actDirClienteList = actDirClienteList;
-	}
-
-	
 	
 }
