@@ -2,9 +2,7 @@ package sv.com.telefonica.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,15 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
-@Table(name = "act_cliente")
-public class ActClienteEntity implements Serializable {
+@Table(name = "act_dir_cliente")
+public class ActDirClienteEntity implements Serializable{
 
 	/**
 	 * 
@@ -28,18 +24,12 @@ public class ActClienteEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cliente", nullable = false)
+	@Column(name = "id_dir_cliente", nullable = false)
 	private Integer id;
-
-	@Column(name = "nombre_cliente", length = 150)
-	private String nombreCliente;
 	
-	@Column(name = "telefono", length = 10)
-	private String telefono;
+	@Column(name = "direccion", length = 150, nullable = false)
+	private String direccion;
 	
-	@Column(name = "email", length = 100)
-	private String email;
-
 	@Column(name = "creado_por", length = 100)
 	private String creadoPor;
 
@@ -54,15 +44,9 @@ public class ActClienteEntity implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaModificado;
 	
-	@JoinColumn(name = "id_tipo_persona", referencedColumnName = "id_tipo_persona", nullable = false)
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente", nullable = false)
 	@ManyToOne(optional = false)
-	private ActTipoPersonaEntity actTipoPersonaEntity;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "actClienteEntity")
-	private List<ActDocClienteEntity> actDocClienteList;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "actClienteEntity")
-	private List<ActDirClienteEntity> actDirClienteList;
+	private ActClienteEntity actClienteEntity;
 
 	public Integer getId() {
 		return id;
@@ -72,36 +56,20 @@ public class ActClienteEntity implements Serializable {
 		this.id = id;
 	}
 
-	public ActTipoPersonaEntity getActTipoPersonaEntity() {
-		return actTipoPersonaEntity;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setActTipoPersonaEntity(ActTipoPersonaEntity actTipoPersonaEntity) {
-		this.actTipoPersonaEntity = actTipoPersonaEntity;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	public String getNombreCliente() {
-		return nombreCliente;
+	public ActClienteEntity getActClienteEntity() {
+		return actClienteEntity;
 	}
 
-	public void setNombreCliente(String nombreCliente) {
-		this.nombreCliente = nombreCliente;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setActClienteEntity(ActClienteEntity actClienteEntity) {
+		this.actClienteEntity = actClienteEntity;
 	}
 
 	public String getCreadoPor() {
@@ -135,15 +103,7 @@ public class ActClienteEntity implements Serializable {
 	public void setFechaModificado(Date fechaModificado) {
 		this.fechaModificado = fechaModificado;
 	}
-
-	public List<ActDirClienteEntity> getActDirClienteList() {
-		return actDirClienteList;
-	}
-
-	public void setActDirClienteList(List<ActDirClienteEntity> actDirClienteList) {
-		this.actDirClienteList = actDirClienteList;
-	}
-
+	
 	
 	
 }

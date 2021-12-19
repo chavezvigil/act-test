@@ -39,13 +39,13 @@ public class AppController {
 		return "user_registro_exito";
 	}
 
-	@GetMapping("/usuarios")
+	@GetMapping("/clientes_consulta")
 	public String listUsers(Model model) {
 
 		List<ActUsuarioEntity> listUsers = userRepo.findAll();
 		model.addAttribute("listUsers", listUsers);
 
-		return "users";
+		return "cliente_lista";
 	}
 
 	
