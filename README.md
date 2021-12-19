@@ -21,6 +21,14 @@ Administración de clientes telefónica
 
 11. Spring framework will generate database based on the created entities
 
+#Please follow this instruction to do the unit test
+
+1. Find scr/test/java
+2. Right click on test unit
+3. Run as JUnit Test
+
+![image](https://user-images.githubusercontent.com/2258381/146685553-264ecdaf-c1c1-4fda-8a7b-a950da42b5c6.png)
+
 #Please follow this instruction to management database:
 
 1. Download DBeaver community or any software to management databases: https://dbeaver.io/download/
