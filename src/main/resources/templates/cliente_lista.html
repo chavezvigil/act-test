@@ -2,23 +2,149 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Bienvenido ACT</title>
-	<link rel="stylesheet" type="text/css" href="./webjars/bootstrap/css/bootstrap.min.css" />
-	<script type="text/javascript" src="./webjars/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="./webjars/bootstrap/js/bootstrap.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Bienvenido ACT</title>
+<link rel="stylesheet" type="text/css"
+	href="./webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="./webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="./webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<div class="container text-center">
+	<div class="container">
 		<nav class="navbar navbar-light bg-light">
 			<a class="navbar-brand" href="http://www.telefonica.com.sv/">
 				<h3>AC-Telef&oacute;nica Test</h3>
 			</a>
 		</nav>
-		<h4>Clientes registrados</h4>
-	</div>
 
+
+		<div class="modal fade in" id="addCliente">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Adicionar cliente</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">X</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form th:action="@{/cliente_proceso_registro}"
+							th:object="${cliente}" method="post"
+							style="max-width: 600px; margin: 0 auto;">
+
+
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Tipo persona: </label>
+									<div class="col-8">
+										<select th:field="*{actTipoPersonaEntity.id}"
+											class="form-control" required>
+											<option th:each="tpe : ${listTpe}" th:value="${tpe.id}"
+												th:text="${tpe.descripcion}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Nombre cliente: </label>
+									<div class="col-8">
+										<input type="text" th:field="*{nombreCliente}"
+											class="form-control" required minlength="2" maxlength="50" />
+									</div>
+								</div>
+							</div>
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Email: </label>
+									<div class="col-8">
+										<input type="email" th:field="*{email}" class="form-control"
+											required maxlength="50" />
+									</div>
+								</div>
+							</div>
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Telefono: </label>
+									<div class="col-8">
+										<input type="text" th:field="*{telefono}" class="form-control"
+											required maxlength="10" />
+									</div>
+								</div>
+							</div>
+
+
+
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline pull-left"
+									data-dismiss="modal">Cerrar</button>
+								<button type="submit" class="btn btn-success">
+									<i class="fa fa-check"></i>&nbsp;Guardar
+								</button>
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<p>
+			<span>Clientes Registrados</span>
+		</p>
+
+		<div class="row">
+			<div class="col-sm">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#addCliente">
+					<i class="fa fa-plus"></i>
+				</button>
+			</div>
+		</div>
+
+
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Nombre del cliente</th>
+				<th>Tipo persona</th>
+				<th>Email</th>
+				<th>Tel&eacute;fono</th>
+				<th>Creador por</th>
+				<th>Fecha creaci&oacute;n</th>
+				<th>Acciones</th>
+			</tr>
+			<tr th:each="cliente : ${listClientes}">
+				<td th:text="${cliente.id}"></td>
+				<td th:text="${cliente.nombreCliente}"></td>
+				<td th:text="${cliente.actTipoPersonaEntity.descripcion}"></td>
+				<td th:text="${cliente.email}"></td>
+				<td th:text="${cliente.telefono}"></td>
+				<td th:text="${cliente.creadoPor}"></td>
+				<td
+					th:text="${#dates.format(cliente.fechaCreado, 'dd-MM-yyyy hh:mm:ss')}"></td>
+				<td>
+					<button type="button" class="btn btn-success">
+						<i class="fa fa-edit"></i>
+					</button>
+					<button type="button" class="btn btn-danger">
+						<i class="fa fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</table>
 </body>
 
 </html>
