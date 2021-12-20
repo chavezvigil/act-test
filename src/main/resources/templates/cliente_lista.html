@@ -22,6 +22,38 @@
 		</nav>
 
 
+		<div th:each="row : ${listClientes}"
+			th:attr="id=${'deleteModal' + row.id}"
+			class="modal modal-warning fade in">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Eliminar Cliente</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">X</span>
+						</button>
+
+					</div>
+					<div class="modal-body">
+						Est&aacute; seguro de eliminar el cliente:
+						<div th:text="${row.nombreCliente}" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline pull-left"
+							data-dismiss="modal">Close</button>
+						<a class="btn btn-danger"
+							th:href="@{/cliente_eliminar(customerId=${row.id})}"> <i
+							class="fa fa-check"></i>&nbsp;Yes
+						</a>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
 		<div class="modal fade in" id="addCliente">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -36,8 +68,6 @@
 						<form th:action="@{/cliente_proceso_registro}"
 							th:object="${cliente}" method="post"
 							style="max-width: 600px; margin: 0 auto;">
-
-
 
 							<div class="m-3">
 								<div class="form-group row">
@@ -82,9 +112,6 @@
 								</div>
 							</div>
 
-
-
-
 							<div class="modal-footer">
 								<button type="button" class="btn btn-outline pull-left"
 									data-dismiss="modal">Cerrar</button>
@@ -111,6 +138,8 @@
 					data-target="#addCliente">
 					<i class="fa fa-plus"></i>
 				</button>
+				<a th:href="@{/cliente_export_excel}" class="btn btn-secondary"><i
+					class="fa fa-file-excel-o" aria-hidden="true"></i></a>
 			</div>
 		</div>
 
@@ -126,20 +155,22 @@
 				<th>Fecha creaci&oacute;n</th>
 				<th>Acciones</th>
 			</tr>
-			<tr th:each="cliente : ${listClientes}">
-				<td th:text="${cliente.id}"></td>
-				<td th:text="${cliente.nombreCliente}"></td>
-				<td th:text="${cliente.actTipoPersonaEntity.descripcion}"></td>
-				<td th:text="${cliente.email}"></td>
-				<td th:text="${cliente.telefono}"></td>
-				<td th:text="${cliente.creadoPor}"></td>
+			<tr th:each="row : ${listClientes}">
+				<td th:text="${row.id}"></td>
+				<td th:text="${row.nombreCliente}"></td>
+				<td th:text="${row.actTipoPersonaEntity.descripcion}"></td>
+				<td th:text="${row.email}"></td>
+				<td th:text="${row.telefono}"></td>
+				<td th:text="${row.creadoPor}"></td>
 				<td
-					th:text="${#dates.format(cliente.fechaCreado, 'dd-MM-yyyy hh:mm:ss')}"></td>
+					th:text="${#dates.format(row.fechaCreado, 'dd-MM-yyyy hh:mm:ss')}"></td>
 				<td>
 					<button type="button" class="btn btn-success">
 						<i class="fa fa-edit"></i>
 					</button>
-					<button type="button" class="btn btn-danger">
+					<button type="button" class="btn btn-danger" data-toggle="modal"
+						th:attr="data-target=${'#deleteModal'+row.id}"
+						th:data-row="${row}">
 						<i class="fa fa-trash"></i>
 					</button>
 				</td>

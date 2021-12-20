@@ -1,15 +1,23 @@
 package sv.com.telefonica.controller;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import sv.com.telefonica.framework.utils.ClienteExcelExporter;
 import sv.com.telefonica.model.entity.ActClienteEntity;
 import sv.com.telefonica.model.entity.ActTipoPersonaEntity;
 import sv.com.telefonica.model.entity.ActUsuarioEntity;
@@ -25,7 +33,7 @@ public class AppController {
 
 	@Autowired
 	private ActClienteRepository clientesRepo;
-	
+
 	@Autowired
 	private ActTipoPersonaRepository tpeRepo;
 
@@ -56,31 +64,64 @@ public class AppController {
 
 		List<ActClienteEntity> listUsers = clientesRepo.findAll();
 		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
-		
+
 		model.addAttribute("cliente", new ActClienteEntity());
 		model.addAttribute("listClientes", listUsers);
 		model.addAttribute("listTpe", listTpe);
 
 		return "cliente_lista";
 	}
-	
+
 	@PostMapping("/cliente_proceso_registro")
 	public String processRegisterClient(Model model, Principal principal, ActClienteEntity cliente) {
-		
 
 		cliente.setFechaCreado(new Date());
 		cliente.setCreadoPor(principal.getName().split("@")[0]);
-		
+
 		clientesRepo.save(cliente);
-		
+
 		List<ActClienteEntity> listUsers = clientesRepo.findAll();
 		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
-		
+
 		model.addAttribute("cliente", new ActClienteEntity());
 		model.addAttribute("listClientes", listUsers);
 		model.addAttribute("listTpe", listTpe);
 
 		return "cliente_lista";
+	}
+
+	@GetMapping("/cliente_eliminar")
+	public String deleteClient(Model model, Principal principal, @RequestParam Integer customerId) {
+
+		if (customerId != null) {
+			List<ActClienteEntity> clientes = clientesRepo.findById(customerId);
+			clientesRepo.delete(clientes.get(0));
+		}
+
+		List<ActClienteEntity> listUsers = clientesRepo.findAll();
+		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
+
+		model.addAttribute("cliente", new ActClienteEntity());
+		model.addAttribute("listClientes", listUsers);
+		model.addAttribute("listTpe", listTpe);
+
+		return "cliente_lista";
+	}
+
+	@GetMapping("/cliente_export_excel")
+	public void exportToExcel(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=clientes_" + currentDateTime + ".xlsx";
+		response.setHeader(headerKey, headerValue);
+
+		List<ActClienteEntity> listClientes = clientesRepo.findAll();
+		ClienteExcelExporter excelExporter = new ClienteExcelExporter(listClientes);
+
+		excelExporter.export(response);
 	}
 
 }
