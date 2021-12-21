@@ -25,7 +25,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 10. Run proyect on Tomcat
 
-![image](https://user-images.githubusercontent.com/2258381/146679846-4766fbc6-fcb0-48b8-b380-09224166c242.png)
+![image](https://user-images.githubusercontent.com/2258381/146980006-fc2271ef-c4f6-4c40-b9f7-8c2efa3b61cd.png)
 
 11. Spring framework will generate database based on the created entities
 
