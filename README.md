@@ -95,7 +95,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 9. Add new address
 
-![image](https://user-images.githubusercontent.com/2258381/146983842-11241e30-b67c-428a-a22c-b1ee3ec6f84e.png)
+![image](https://user-images.githubusercontent.com/2258381/146997470-836ac52d-a6e4-41e9-a85f-3d25318ff90c.png)
 
 10. Export to excel file
 
