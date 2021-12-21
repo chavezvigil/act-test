@@ -75,7 +75,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 4. List of Customers
 
-![image](https://user-images.githubusercontent.com/2258381/146983519-ed537f7c-4cce-4dd3-a716-ad054a6d818c.png)
+![image](https://user-images.githubusercontent.com/2258381/147008732-84627e12-b593-4285-81ec-71901936bf95.png)
 
 5. New customer
 
