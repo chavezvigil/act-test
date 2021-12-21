@@ -5,9 +5,9 @@ Customers management Telefónica
 
 Se requiere un sistema para el registro de clientes, donde se guarde los datos generales y permita tener mas de una direccion o documento de identificacion, la cantidad de tipo documentos y direcciones quedaria a discrecion de quien ingresa la informacion. Se requiere - Pantalla donde permita la administracion de los clientes. - Servicio para consumir desde aplicaciones externas. - Auditoria en los cambios que se realicen sobre la informacion de los clientes. Reporte de los clientes en archivo de texto csv, txt generado desde un script. Consideraciones - Puede utilizar cualquier base de datos - Puede utilizar cualquier framework - Puede utilizar cualquier lenguaje de programacion. - Se requiere que el proyecto lo suban a un repositorio git publico.
 
-#Solution 
+<b>#Solution </b>
  
-#Please follow this instruction to install:
+<b>#Please follow this instruction to install:</b>
 
 1. Download STS from: https://spring.io/tools
 2. Download Tomcat 9 from: https://tomcat.apache.org/download-90.cgi 
@@ -27,7 +27,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 11. Spring framework will generate database based on the created entities
 
-#Please follow this instruction to do the unit test
+<b>#Please follow this instruction to do the unit test</b>
 
 1. Find scr/test/java
 2. Right click on test unit
@@ -35,13 +35,13 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 ![image](https://user-images.githubusercontent.com/2258381/146685553-264ecdaf-c1c1-4fda-8a7b-a950da42b5c6.png)
 
-#Please follow this instruction to management database:
+<b>#Please follow this instruction to management database:</b>
 
 1. Download DBeaver community or any software to management databases: https://dbeaver.io/download/
 
 ![image](https://user-images.githubusercontent.com/2258381/146680912-2f80d9ce-ef96-4501-81cd-ce8f6501e8af.png)
 
-#Please follow this instruction to test the endpoint:
+<b>#Please follow this instruction to test the endpoint:</b>
 
 1. Download insomnia or any software to request for web services restfull: https://insomnia.rest/download
 2. Then create new request as "get request", then put url: http://localhost:8080/act/clientes
