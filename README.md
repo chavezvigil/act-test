@@ -40,6 +40,11 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 <b>#Please follow this instruction to management database:</b>
 
 1. Download DBeaver community or any software to management databases: https://dbeaver.io/download/
+2. Database design
+
+![image](https://user-images.githubusercontent.com/2258381/146981086-c249a27d-f6fb-4477-b971-a9c848935d13.png)
+
+3. SQL from DBeaver
 
 ![image](https://user-images.githubusercontent.com/2258381/146680912-2f80d9ce-ef96-4501-81cd-ce8f6501e8af.png)
 
