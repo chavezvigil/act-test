@@ -170,15 +170,15 @@
 				<td
 					th:text="${#dates.format(row.fechaCreado, 'dd-MM-yyyy hh:mm:ss')}"></td>
 				<td>
-					<button type="button" class="btn btn-success">
-						<i class="fa fa-edit"></i>
-					</button>
+					<a class="btn btn-success"
+					th:href="@{/cliente_editar(customerId=${row.id})}"> <i
+						class="fa fa-edit"></i>
+					</a>
 					<button type="button" class="btn btn-danger" data-toggle="modal"
 						th:attr="data-target=${'#deleteModal'+row.id}"
 						th:data-row="${row}">
 						<i class="fa fa-trash"></i>
-					</button>
-				</td>
+					</button></td>
 			</tr>
 		</table>
 </body>

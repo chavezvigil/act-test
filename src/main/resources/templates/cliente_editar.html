@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Edici&oacute;n cliente</title>
+<link rel="stylesheet" type="text/css"
+	href="./webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="./webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="./webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="http://www.telefonica.com.sv/">
+				<h3>AC-Telef&oacute;nica Test</h3>
+			</a>
+		</nav>
+
+
+		<div class="modal fade in" id="addDireccion">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Adicionar direcci&oacute;n</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">X</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form th:action="@{/direccion_proceso_registro}"
+							th:object="${address}" method="post"
+							style="max-width: 600px; margin: 0 auto;">
+
+							<div class="m-3">
+								<div class="form-group row">
+									<div class="col-8">
+										<input type="text" th:field="*{actClienteEntity.id}"
+											class="form-control" required minlength="2" maxlength="50"
+											hidden="true" />
+									</div>
+								</div>
+							</div>
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Direcci&oacute;n: </label>
+									<div class="col-8">
+										<input type="text" th:field="*{direccion}"
+											class="form-control" required minlength="2" maxlength="50" />
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline pull-left"
+									data-dismiss="modal">Cerrar</button>
+								<button type="submit" class="btn btn-success">
+									<i class="fa fa-check"></i>&nbsp;Guardar
+								</button>
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<p>
+			<span>Informaci&oacute;n de cliente</span>
+		</p>
+
+		<form th:action="@{/cliente_proceo_editar}" th:object="${cliente}"
+			method="post">
+
+			<div class="m-3">
+				<div class="form-group row">
+					<div class="col-8">
+						<input type="text" th:field="*{id}" hidden="true"
+							class="form-control" required minlength="2" maxlength="50" />
+					</div>
+				</div>
+			</div>
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-5 col-form-label">Nombre cliente: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{nombreCliente}"
+							class="form-control" required minlength="2" maxlength="50" />
+					</div>
+				</div>
+			</div>
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-5 col-form-label">Tipo persona: </label>
+					<div class="col-8">
+						<select th:field="*{actTipoPersonaEntity.id}" class="form-control"
+							required>
+							<option th:each="tpe : ${listTpe}" th:value="${tpe.id}"
+								th:text="${tpe.descripcion}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-5 col-form-label">Email: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{email}" class="form-control"
+							required />
+					</div>
+				</div>
+			</div>
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-5 col-form-label">Tel&eacute;fono: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{telefono}" class="form-control"
+							required />
+					</div>
+				</div>
+			</div>
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-5 col-form-label">Creado por: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{creadoPor}" class="form-control"
+							readonly="readonly" />
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="row">
+				<div class="col-sm">
+					<button type="submit" class="btn btn-success">
+						<i class="fa fa-check"></i>&nbsp;Guardar
+					</button>
+					<a class="btn btn-secondary" th:href="@{/clientes_consulta}"> <i
+						class="fa fa-window-close"></i>&nbsp;Regresar
+					</a>
+				</div>
+			</div>
+
+
+		</form>
+
+		<div class="container" style="margin-top: 50px;">
+			<div class="row">
+				<p>
+					<span>Direcciones Registradas</span>
+				</p>
+			</div>
+
+			<div class="row">
+				<div class="col-sm">
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#addDireccion">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+
+			<table class="table table-striped" id="dirTable">
+				<tr>
+					<th>#</th>
+					<th>Direcci&oacute;n</th>
+					<th>Creador por</th>
+					<th>Fecha creaci&oacute;n</th>
+
+				</tr>
+				<tr th:each="row : ${listDir}">
+					<td th:text="${row.id}"></td>
+					<td th:text="${row.direccion}"></td>
+					<td th:text="${row.creadoPor}"></td>
+					<td
+						th:text="${#dates.format(row.fechaCreado, 'dd-MM-yyyy hh:mm:ss')}"></td>
+
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
