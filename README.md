@@ -67,7 +67,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 2. Users register
 
-![image](https://user-images.githubusercontent.com/2258381/146983240-c52c811e-0add-4603-9964-920504d1574b.png)
+![image](https://user-images.githubusercontent.com/2258381/147008668-54969ce8-8e19-488e-a184-e76ba3f992bf.png)
 
 3. Login
 
