@@ -21,7 +21,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 8. Connect to mysql instance to create database
 9. Create database using the command: CREATE DATABASE act;
 
-![image](https://user-images.githubusercontent.com/2258381/146680689-dc59d512-c192-4737-ab97-43cf50f68151.png)
+![image](https://user-images.githubusercontent.com/2258381/146981348-54015375-5969-49ee-980b-62ef0d4bf795.png)
 
 10. Run proyect on Tomcat
 
