@@ -27,7 +27,7 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 ![image](https://user-images.githubusercontent.com/2258381/146980100-d5696389-e8b5-4d58-b00b-0d4ff7522276.png)
 
-11. Spring framework will generate database based on the created entities
+11. Spring framework will generate database based on the created entities (Tables column order is made by spring data framework, which will order by name ascending A-Z)
 
 <b>#Please follow this instruction to do the unit test</b>
 
