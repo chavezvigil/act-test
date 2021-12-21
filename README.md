@@ -37,7 +37,8 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 ![image](https://user-images.githubusercontent.com/2258381/146981812-f006874f-332b-4374-a751-a23f71a18c51.png)
 
-4. Spring framework will insert data in database (Catalogs as "tipo persona" and "Tipo documentos")
+4. Spring framework will insert data in database (Catalogs as "Tipo persona" and "Tipo documentos")
+
 ![image](https://user-images.githubusercontent.com/2258381/146685553-264ecdaf-c1c1-4fda-8a7b-a950da42b5c6.png)
 
 <b>#Please follow this instruction to management database:</b>
