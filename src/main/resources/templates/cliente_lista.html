@@ -163,7 +163,7 @@
 			<tr th:each="row : ${listClientes}">
 				<td th:text="${row.id}"></td>
 				<td th:text="${row.nombreCliente}"></td>
-				<td th:text="${row.actTipoPersonaEntity.descripcion}"></td>
+				<td th:text="${(row.actTipoPersonaEntity != null) ? row.actTipoPersonaEntity.descripcion: ''}"></td>
 				<td th:text="${row.email}"></td>
 				<td th:text="${row.telefono}"></td>
 				<td th:text="${row.creadoPor}"></td>

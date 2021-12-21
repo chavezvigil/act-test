@@ -20,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import sv.com.telefonica.framework.utils.ClienteExcelExporter;
 import sv.com.telefonica.model.entity.ActClienteEntity;
 import sv.com.telefonica.model.entity.ActDirClienteEntity;
+import sv.com.telefonica.model.entity.ActDocClienteEntity;
+import sv.com.telefonica.model.entity.ActDocTipoPersonaEntity;
 import sv.com.telefonica.model.entity.ActTipoPersonaEntity;
 import sv.com.telefonica.model.entity.ActUsuarioEntity;
 import sv.com.telefonica.model.repository.ActClienteRepository;
 import sv.com.telefonica.model.repository.ActDirClienteRepository;
+import sv.com.telefonica.model.repository.ActDocClienteRepository;
+import sv.com.telefonica.model.repository.ActDocTipoPersonaRepository;
 import sv.com.telefonica.model.repository.ActTipoPersonaRepository;
 import sv.com.telefonica.model.repository.ActUsuarioRepository;
 
@@ -41,6 +45,12 @@ public class AppController {
 
 	@Autowired
 	private ActDirClienteRepository dirRepo;
+
+	@Autowired
+	private ActDocClienteRepository docRepo;
+	
+	@Autowired
+	private ActDocTipoPersonaRepository docTpeRepo;
 
 	@GetMapping("")
 	public String viewHomePage() {
@@ -136,22 +146,29 @@ public class AppController {
 			List<ActClienteEntity> clientes = clientesRepo.findById(customerId);
 			model.addAttribute("cliente", clientes.get(0));
 
-			
-			//Direccion
+			// Direccion
 			ActDirClienteEntity dir = new ActDirClienteEntity();
 			dir.setActClienteEntity(clientes.get(0));
 			model.addAttribute("address", dir);
+
+			// Documentos
+			ActDocClienteEntity doc = new ActDocClienteEntity();
+			doc.setActClienteEntity(clientes.get(0));
+			model.addAttribute("documento", doc);
 			
-			//Documentos
+			List<ActDocTipoPersonaEntity> listDocByTpe = docTpeRepo.findByIdTipoPersona(clientes.get(0).getActTipoPersonaEntity().getId());
+			model.addAttribute("listDocByTpe", listDocByTpe);
 		}
 
-		
-		//Listas
+		// Listas
 		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
 		model.addAttribute("listTpe", listTpe);
 
 		List<ActDirClienteEntity> listDir = dirRepo.findByIdCliente(customerId);
 		model.addAttribute("listDir", listDir);
+
+		List<ActDocClienteEntity> listDoc = docRepo.findByIdCliente(customerId);
+		model.addAttribute("listDoc", listDoc);
 
 		return "cliente_editar";
 	}
@@ -167,22 +184,30 @@ public class AppController {
 			clientesRepo.save(cliente);
 			model.addAttribute("cliente", cliente);
 
-			//Direccion
+			// Direccion
 			ActDirClienteEntity dir = new ActDirClienteEntity();
 			dir.setActClienteEntity(cliente);
 			model.addAttribute("address", dir);
+
+			// Documentos
+			ActDocClienteEntity newdoc = new ActDocClienteEntity();
+			newdoc.setActClienteEntity(cliente);
+			model.addAttribute("documento", newdoc);
 			
-			//Documentos
+			List<ActDocTipoPersonaEntity> listDocByTpe = docTpeRepo.findByIdTipoPersona(cliente.getActTipoPersonaEntity().getId());
+			model.addAttribute("listDocByTpe", listDocByTpe);
 
 		}
 
-		
-		//Listas
+		// Listas
 		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
 		model.addAttribute("listTpe", listTpe);
 
 		List<ActDirClienteEntity> listDir = dirRepo.findByIdCliente(cliente.getId());
 		model.addAttribute("listDir", listDir);
+		
+		List<ActDocClienteEntity> listDoc = docRepo.findByIdCliente(cliente.getId());
+		model.addAttribute("listDoc", listDoc);
 
 		return "cliente_editar";
 	}
@@ -194,22 +219,68 @@ public class AppController {
 			dir.setFechaCreado(new Date());
 			dir.setCreadoPor(principal.getName().split("@")[0]);
 			dirRepo.save(dir);
-			
-			//Direccion
+
+			// Direccion
 			List<ActClienteEntity> clientes = clientesRepo.findById(dir.getActClienteEntity().getId());
 			model.addAttribute("cliente", clientes.get(0));
 			model.addAttribute("address", dir);
+
+			// Documento
+			ActDocClienteEntity newdoc = new ActDocClienteEntity();
+			newdoc.setActClienteEntity(clientes.get(0));
+			model.addAttribute("documento", newdoc);
 			
-			//Documento
+			List<ActDocTipoPersonaEntity> listDocByTpe = docTpeRepo.findByIdTipoPersona(clientes.get(0).getActTipoPersonaEntity().getId());
+			model.addAttribute("listDocByTpe", listDocByTpe);
 		}
 
-		
-		//Listas
+		// Listas
 		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
 		model.addAttribute("listTpe", listTpe);
 
 		List<ActDirClienteEntity> listDir = dirRepo.findByIdCliente(dir.getActClienteEntity().getId());
 		model.addAttribute("listDir", listDir);
+		
+		List<ActDocClienteEntity> listDoc = docRepo.findByIdCliente(dir.getActClienteEntity().getId());
+		model.addAttribute("listDoc", listDoc);
+
+		return "cliente_editar";
+	}
+
+	@PostMapping("/documento_proceso_registro")
+	public String addDocumento(Model model, Principal principal, ActDocClienteEntity doc) {
+
+		if (doc.getActClienteEntity().getId() != null) {
+			doc.setFechaCreado(new Date());
+			doc.setCreadoPor(principal.getName().split("@")[0]);
+			docRepo.save(doc);
+			// Direccion
+			List<ActClienteEntity> clientes = clientesRepo.findById(doc.getActClienteEntity().getId());
+			model.addAttribute("cliente", clientes.get(0));
+			
+			
+			ActDirClienteEntity dir = new ActDirClienteEntity();
+			dir.setActClienteEntity(clientes.get(0));
+			model.addAttribute("address", dir);
+
+			// Documento
+			ActDocClienteEntity newdoc = new ActDocClienteEntity();
+			newdoc.setActClienteEntity(clientes.get(0));
+			model.addAttribute("documento", newdoc);
+			
+			List<ActDocTipoPersonaEntity> listDocByTpe = docTpeRepo.findByIdTipoPersona(clientes.get(0).getActTipoPersonaEntity().getId());
+			model.addAttribute("listDocByTpe", listDocByTpe);
+		}
+
+		// Listas
+		List<ActTipoPersonaEntity> listTpe = tpeRepo.findAll();
+		model.addAttribute("listTpe", listTpe);
+
+		List<ActDirClienteEntity> listDir = dirRepo.findByIdCliente(doc.getActClienteEntity().getId());
+		model.addAttribute("listDir", listDir);
+
+		List<ActDocClienteEntity> listDoc = docRepo.findByIdCliente(doc.getActClienteEntity().getId());
+		model.addAttribute("listDoc", listDoc);
 
 		return "cliente_editar";
 	}

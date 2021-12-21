@@ -21,6 +21,69 @@
 			</a>
 		</nav>
 
+		<div class="modal fade in" id="addDocumento">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Adicionar documento</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">X</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form th:action="@{/documento_proceso_registro}"
+							th:object="${documento}" method="post"
+							style="max-width: 600px; margin: 0 auto;">
+
+							<div class="m-3">
+								<div class="form-group row">
+									<div class="col-8">
+										<input type="text" th:field="*{actClienteEntity.id}"
+											class="form-control" required minlength="2" maxlength="50"
+											hidden="true" />
+									</div>
+								</div>
+							</div>
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Tipo documento: </label>
+									<div class="col-8">
+										<select th:field="*{actDocTipoPersonaEntity.id}"
+											class="form-control" required>
+											<option th:each="tpe : ${listDocByTpe}" th:value="${tpe.id}"
+												th:text="${tpe.actTipoDocumentoEntity.nombre}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="m-3">
+								<div class="form-group row">
+									<label class="col-4 col-form-label">N&uacute;mero: </label>
+									<div class="col-8">
+										<input type="text" th:field="*{numeroDocumento}"
+											class="form-control" required minlength="2" maxlength="50" />
+									</div>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline pull-left"
+									data-dismiss="modal">Cerrar</button>
+								<button type="submit" class="btn btn-success">
+									<i class="fa fa-check"></i>&nbsp;Guardar
+								</button>
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
 
 		<div class="modal fade in" id="addDireccion">
 			<div class="modal-dialog">
@@ -162,6 +225,48 @@
 		<div class="container" style="margin-top: 50px;">
 			<div class="row">
 				<p>
+					<span>Documentos Registrados</span>
+				</p>
+			</div>
+
+			<div class="row">
+				<div class="col-sm">
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#addDocumento">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+
+			<table class="table table-striped" id="dirTable">
+				<tr>
+					<th>#</th>
+					<th>Documento</th>
+					<th>Tipo Documento</th>
+					<th>Mascara</th>
+					<th>Creador por</th>
+					<th>Fecha creaci&oacute;n</th>
+
+				</tr>
+				<tr th:each="row : ${listDoc}">
+					<td th:text="${row.id}"></td>
+					<td th:text="${row.numeroDocumento}"></td>
+					<td
+						th:text="${(row.actDocTipoPersonaEntity != null and row.actDocTipoPersonaEntity.actTipoDocumentoEntity != null) ? row.actDocTipoPersonaEntity.actTipoDocumentoEntity.nombre: ''}"></td>
+					<td
+						th:text="${(row.actDocTipoPersonaEntity != null and row.actDocTipoPersonaEntity.actTipoDocumentoEntity != null)  ? row.actDocTipoPersonaEntity.actTipoDocumentoEntity.mascara: ''}"></td>
+					<td th:text="${row.creadoPor}"></td>
+					<td
+						th:text="${#dates.format(row.fechaCreado, 'dd-MM-yyyy hh:mm:ss')}"></td>
+
+				</tr>
+			</table>
+		</div>
+
+		<div class="container" style="margin-top: 50px;">
+			<div class="row">
+				<p>
 					<span>Direcciones Registradas</span>
 				</p>
 			</div>
@@ -194,6 +299,9 @@
 				</tr>
 			</table>
 		</div>
+
+
+
 
 	</div>
 
