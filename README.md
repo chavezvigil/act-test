@@ -97,7 +97,16 @@ Se requiere un sistema para el registro de clientes, donde se guarde los datos g
 
 ![image](https://user-images.githubusercontent.com/2258381/146983842-11241e30-b67c-428a-a22c-b1ee3ec6f84e.png)
 
+10. Export to excel file
 
+![image](https://user-images.githubusercontent.com/2258381/146984251-0a39ef4e-1373-4fca-8a8e-22a759fbfe8a.png)
+
+11. Export to csv file
+
+![image](https://user-images.githubusercontent.com/2258381/146984301-22c9d972-c3d2-405d-b30f-0e4e2f2ac421.png)
+
+
+By Luis Chávez - 2021 :) 
 
 
 
