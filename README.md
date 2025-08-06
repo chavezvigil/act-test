@@ -1,5 +1,4 @@
-# Act-Test
-Customers management Telefónica
+# Customer Management System for Telefónica
 
 <b>#Requirement</b>
 <div style="text-align: justify; text-justify: inter-word;">
@@ -118,7 +117,7 @@ Considerations:
 ![image](https://user-images.githubusercontent.com/2258381/146984301-22c9d972-c3d2-405d-b30f-0e4e2f2ac421.png)
 
 
-By Luis Chávez - 2021 :) 
+By Luis Chávez 
 
 
 
